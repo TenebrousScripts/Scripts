@@ -54,7 +54,7 @@ local Dropdown = CrateFarmTab:CreateDropdown({
 })
 
 local Button = CrateFarmTab:CreateButton({
-   Name = "Open selected crate more (Dangerously laggy, select 'None to stop'",
+   Name = "Open selected crate more (Dangerously laggy, select 'None' to stop",
    Callback = function()
         while true do
             wait()
