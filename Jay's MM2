@@ -31,7 +31,7 @@ local Window = Rayfield:CreateWindow({
    }
 })
 
-local CrateFarmTab = Window:CreateTab("Crate Farm", 4483362458)
+local CrateFarmTab = Window:CreateTab("Farm", 4483362458)
 
 local ops = nil
 
