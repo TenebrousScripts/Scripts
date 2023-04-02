@@ -1,1 +1,77 @@
+local player = game.Players.LocalPlayer
+local character = player.Character
+local hrp = character.HumanoidRootPart
+local humanoid = character.Humanoid
 
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Jay's MM2 GUI by AeroScripts",
+   LoadingTitle = "Jay's MM2 GUI",
+   LoadingSubtitle = "by AeroScripts",
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = "MM2", -- Create a custom folder for your hub/game
+      FileName = "Jay's MM2"
+   },
+   Discord = {
+      Enabled = false,
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Tenebrous Hub",
+      Subtitle = "Key System",
+      Note = "Have someone give the key to you",
+      FileName = "TenebrousKey",
+      SaveKey = true,
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = "funnylittleguy"
+   }
+})
+
+local CrateFarmTab = Window:CreateTab("Crate Farm", 4483362458)
+
+local ops = nil
+
+local Dropdown = CrateFarmTab:CreateDropdown({
+   Name = "Crates (may cause lag, select 'None' to stop)",
+   Options = {"None", "MysteryBox#1", "AprilFools", "KnifeBox1", "KnifeBox2", "KnifeBox3", "KnifeBox4", "KnifeBox5", "GunBox1", "MysteryBox2", "GunBox2", "ChristmasBox2021", "MLG Box", "MLGBox"},
+   CurrentOption = "None",
+   Flag = "Dropdown1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Option)
+       ops = Option
+       while Option ~= "None" do
+           if ops ~= Option then
+               do return end
+           else
+               game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(Option)
+               wait()
+           end
+       end
+   end,
+})
+
+local Button = CrateFarmTab:CreateButton({
+   Name = "Open selected crate more (Dangerously laggy, select 'None to stop'",
+   Callback = function()
+        while true do
+            wait()
+              if ops == "None" then
+                  do return end
+              else
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+                game:GetService("ReplicatedStorage").Remotes.Shop.OpenCrate:InvokeServer(ops)
+           end
+        end
+   end,
+})
